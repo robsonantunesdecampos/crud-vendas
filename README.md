@@ -1,24 +1,75 @@
-# README
+# CRUD de Vendas em Ruby on Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este é um projeto de CRUD simples feito com **Ruby on Rails** e **PostgreSQL**, que permite gerenciar vendas e os produtos vendidos em cada uma delas.
 
-Things you may want to cover:
+---
 
-* Ruby version
+## 💡 Funcionalidades
 
-* System dependencies
+- Cadastro de Vendas com campos de cliente
+- Adição de múltiplos produtos diretamente no formulário de cada venda
+- Campos de produto, quantidade e valor são preenchidos manualmente
+- Listagem, edição e remoção de vendas
 
-* Configuration
+---
 
-* Database creation
+## 🧱 Estrutura do Banco
 
-* Database initialization
+### Tabela `vendas`
 
-* How to run the test suite
+| Campo     | Tipo     |
+|-----------|----------|
+| id        | integer  |
+| cliente   | string   |
+| created_at| datetime |
+| updated_at| datetime |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Tabela `vendas_produtos`
 
-* Deployment instructions
+| Campo      | Tipo     |
+|------------|----------|
+| id         | integer  |
+| venda_id   | integer (FK) |
+| produto    | string   |
+| quantidade | integer  |
+| valor      | decimal  |
+| created_at | datetime |
+| updated_at | datetime |
 
-* ...
+---
+
+## 🚀 Como executar o projeto
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/robsonantunesdecampos/crud-vendas
+cd crud-vendas
+
+Instale as dependências:
+bundle install
+
+Configure o banco:
+rails db:create
+rails db:migrate
+
+Inicie o servidor:
+rails server
+
+Acesse: http://localhost:3000/vendas
+
+📂 Organização do Código
+app/models/venda.rb: Model da venda (possui has_many :vendas_produtos)
+
+app/models/vendas_produto.rb: Model que representa os produtos vendidos em uma venda
+
+app/controllers/vendas_controller.rb: Controlador principal que gerencia as vendas e produtos aninhados
+
+app/views/vendas/: Formulários, listagens e detalhes de vendas
+
+config/routes.rb: Define as rotas REST para vendas
+
+✍️ Autor
+Desenvolvido por Robson
+https://github.com/robsonantunesdecampos
+
