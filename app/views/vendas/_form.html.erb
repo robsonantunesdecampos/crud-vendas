@@ -1,0 +1,23 @@
+<%= form_with(model: venda) do |form| %>
+  <%= form.label :cliente %>
+  <%= form.text_field :cliente %>
+
+  <h3>Produtos</h3>
+  <%= form.fields_for :vendas_produtos do |produto_form| %>
+    <div>
+      <%= produto_form.label :produto %>
+      <%= produto_form.text_field :produto %>
+
+      <%= produto_form.label :quantidade %>
+      <%= produto_form.number_field :quantidade %>
+
+      <%= produto_form.label :valor %>
+      <%= produto_form.number_field :valor, step: 0.01 %>
+
+      <%= produto_form.check_box :_destroy %>
+      <%= produto_form.label :_destroy, "Remover" %>
+    </div>
+  <% end %>
+
+  <%= form.submit %>
+<% end %>
